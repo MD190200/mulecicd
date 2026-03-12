@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="News" format="json">
+      <types:shape format="weave" example="examples/news-1.json"><![CDATA[%dw 2.0
+
+type News = {|
+  News_Content__c: String, 
+  CreatedById: String, 
+  CreatedDate: String, 
+  Location__c: String, 
+  Urgent__c: String
+|} {"example": "{\\\"News_Content__c\\\":\\\"Lake Road is closed due to mudslides.\\\",\\\"CreatedById\\\":\\\"005g5000000n0ZxAAI\\\",\\\"CreatedDate\\\":\\\"2026-03-09T19:27:32.431Z\\\",\\\"Location__c\\\":\\\"Mountain City\\\",\\\"Urgent__c\\\":\\\"true\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#42e15675-202a-42ae-a8b5-f292e8252736">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="News"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

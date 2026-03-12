@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ab4e1b2f-2460-4fb0-a69e-45967ba99c50" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="7d976273-343d-42a3-aa62-6dd20a9426aa" >
+		<salesforce:config-with-oauth-connection >
+			<salesforce:oauth-authorization-code consumerKey="3MVG97L7PWbPq6UyHPKVAlXuQRn.ALm88O8GNx_Z4XA8MC.eCN9XT4ZqluVQZWQtCX.ERbtO.q.xA_4qJuF9P" consumerSecret="3C61BC94D9B7B57D76997B16F7765ED6A8BDC6721D1EA1012AB6C241EF24681B" authorizationUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/authorize" accessTokenUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/token" />
+			<salesforce:oauth-callback-config listenerConfig="HTTP_Listener_config" callbackPath="/callback" authorizePath="/authorize" externalCallbackUrl="${http.host}/callback" />
+		</salesforce:config-with-oauth-connection>
+	</salesforce:sfdc-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="a1bc2de1-32ed-4009-8c2d-df1e61c0ce9b" file="dev.properties" />
+	<flow name="sfintegrationFlow" doc:id="a23a0128-15af-47ce-a0f5-dedf21c274ec" >
+		<salesforce:replay-channel-listener doc:name="Replay channel listener" doc:id="b84f85ba-a240-4fef-b0f4-258a188620fb" config-ref="Salesforce_Config" replayOption="ALL" streamingChannel="/event/Cloud_News__e">
+			<reconnect-forever />
+		</salesforce:replay-channel-listener>
+		<ee:transform doc:name="Transform Message" doc:id="42e15675-202a-42ae-a8b5-f292e8252736" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload.data.payload
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="62ac8ae4-78b4-4768-bf3a-c32fd85a4176" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+ "City":payload.Location__c
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="3f6bd97b-2f06-46ba-8bca-9bad1952f5c6" message="#[%dw 2.0&#10;output application/json&#10;---&#10;payload]"/>
+	</flow>
+	<flow name="sfintegrationFlow1" doc:id="7f56be78-2b84-4fc6-9138-d9134cf8d557" >
+		<http:listener doc:name="Listener" doc:id="d9d69aa6-503d-4a01-a070-1f69d95e1bdd" config-ref="HTTP_Listener_config" path="/account">
+			<http:response statusCode="200" >
+				<http:body ><![CDATA[#[output application/json --- payload]]]></http:body>
+			</http:response>
+		</http:listener>
+		<salesforce:get-user-info doc:name="Get user info" doc:id="5d70760a-b66a-4074-aa1f-63819d86a675" config-ref="Salesforce_Config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a8addb6e-7175-4e48-8470-c09d26ff6bfc" message="#[%dw 2.0&#10;output application/json&#10;---&#10;payload]"/>
+	</flow>
+</mule>
