@@ -33,6 +33,26 @@
 					<classifier>---- select project type ----</classifier>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>4.6.1</version>
+    <extensions>true</extensions>
+    <configuration>
+        <cloudHubDeployment>
+            <uri>https://anypoint.mulesoft.com</uri>
+            <muleVersion>4.10.2</muleVersion>
+            <username>mmd190200</username>
+            <password>TimePass19020$#</password>
+            <applicationName>sfintegration</applicationName>
+            <environment>Sandbox</environment>
+            <workerType>MICRO</workerType>
+            <objectStoreV2>true</objectStoreV2>
+        </cloudHubDeployment>
+    </configuration>
+</plugin>
+			
 		</plugins>
 	</build>
 
