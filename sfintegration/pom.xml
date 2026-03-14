@@ -2,18 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>c8925180-ca58-46ed-b96e-c03116d1d118</groupId>
 	<artifactId>sfintegration</artifactId>
 	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
-
 	<name>sfintegration</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<app.runtime>4.10.2</app.runtime>
+		<app.runtime>4.11</app.runtime>
 		<mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
 	</properties>
 
@@ -25,27 +23,29 @@
 				<version>3.2.0</version>
 			</plugin>
 			<plugin>
-    <groupId>org.mule.tools.maven</groupId>
-    <artifactId>mule-maven-plugin</artifactId>
-    <version>4.6.1</version>
-    <extensions>true</extensions>
-    <configuration>
-        <cloudHubDeployment>
-            <uri>https://anypoint.mulesoft.com</uri>
-            <muleVersion>4.10.2</muleVersion>
-            <username>mmd190200</username>
-            <password>TimePass19020$#</password>
-            <applicationName>sfintegration</applicationName>
-            <environment>Sandbox</environment>
-            <workerType>MICRO</workerType>
-            <objectStoreV2>true</objectStoreV2>
-        </cloudHubDeployment>
-    </configuration>
-</plugin>
-			
-		</plugins>
+    			<groupId>org.mule.tools.maven</groupId>
+    			<artifactId>mule-maven-plugin</artifactId>
+   				 <version>4.6.1</version>
+    			<extensions>true</extensions>
+   				<configuration>
+   				<classifier>mule-application</classifier>
+     			 <cloudhub2Deployment>
+           		   <uri>https://anypoint.mulesoft.com</uri>
+                   <provider>MC</provider>
+                   <muleVersion>4.11</muleVersion>
+                   <username>mmd190200</username>
+                   <password>TimePass19020$#</password>
+                   <applicationName>sfintegration</applicationName>
+                   <environment>Sandbox</environment>
+            	  <target>Cloudhub-US-East-2</target>
+            	   <replicas>1</replicas>
+                   <vCores>0.1</vCores>
+                  
+                 </cloudhub2Deployment>
+                </configuration>
+             </plugin>
+			</plugins>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -80,6 +80,13 @@
 			<url>https://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+         <id>Repository</id>
+         <name>Private Exchange repository</name>
+         <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/c8925180-ca58-46ed-b96e-c03116d1d118/maven</url>
+         <layout>default</layout>
+       </repository>
+		
 	</repositories>
 
 	<pluginRepositories>
@@ -94,4 +101,12 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+     <distributionManagement>
+        <repository>
+            <id>Repository</id>
+            <name>Corporate Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/c8925180-ca58-46ed-b96e-c03116d1d118/maven</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 </project>
