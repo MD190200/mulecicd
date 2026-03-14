@@ -23,28 +23,26 @@
 				<version>3.2.0</version>
 			</plugin>
 			<plugin>
-    			<groupId>org.mule.tools.maven</groupId>
-    			<artifactId>mule-maven-plugin</artifactId>
-   				 <version>4.6.1</version>
-    			<extensions>true</extensions>
-   				<configuration>
-   				<classifier>mule-application</classifier>
-     			 <cloudhub2Deployment>
+    			       <groupId>org.mule.tools.maven</groupId>
+    			       <artifactId>mule-maven-plugin</artifactId>
+   		               <version>4.6.1</version>
+    			       <extensions>true</extensions>
+   			<configuration>
+       			 <cloudhub2Deployment>
            		   <uri>https://anypoint.mulesoft.com</uri>
-                   <provider>MC</provider>
-                   <muleVersion>4.11</muleVersion>
-                   <username>mmd190200</username>
-                   <password>TimePass19020$#</password>
-                   <applicationName>sfintegration</applicationName>
-                   <environment>Sandbox</environment>
-            	  <target>Cloudhub-US-East-2</target>
-            	   <replicas>1</replicas>
-                   <vCores>0.1</vCores>
-                  
-                 </cloudhub2Deployment>
-                </configuration>
-             </plugin>
-			</plugins>
+                   	   <provider>MC</provider>
+                   	   <muleVersion>4.11</muleVersion>
+                   	   <username>mmd190200</username>
+                   	   <password>TimePass19020$#</password>
+                           <applicationName>sfintegration</applicationName>
+                           <environment>Sandbox</environment>
+            	           <target>Cloudhub-US-East-2</target>
+            	           <replicas>1</replicas>
+                           <vCores>0.1</vCores>                  
+                        </cloudhub2Deployment>
+                       </configuration>
+                       </plugin>
+	       </plugins>
 	</build>
 	<dependencies>
 		<dependency>
