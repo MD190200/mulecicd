@@ -7,11 +7,11 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ab4e1b2f-2460-4fb0-a69e-45967ba99c50" >
-		<http:listener-connection host="https://sfintegration-903osi.5sc6y6-2.usa-e2.cloudhub.io" port="${http.port}" />
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
 	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="7d976273-343d-42a3-aa62-6dd20a9426aa" >
 		<salesforce:config-with-oauth-connection >
-			<salesforce:oauth-authorization-code consumerKey="3MVG97L7PWbPq6UyHPKVAlXuQRn.ALm88O8GNx_Z4XA8MC.eCN9XT4ZqluVQZWQtCX.ERbtO.q.xA_4qJuF9P" consumerSecret="3C61BC94D9B7B57D76997B16F7765ED6A8BDC6721D1EA1012AB6C241EF24681B" authorizationUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/authorize" accessTokenUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/token" />
+			<salesforce:oauth-authorization-code consumerKey="3MVG97L7PWbPq6UyHPKVAlXuQRn.ALm88O8GNx_Z4XA8MC.eCN9XT4ZqluVQZWQtCX.ERbtO.q.xA_4qJuF9P" consumerSecret="3C61BC94D9B7B57D76997B16F7765ED6A8BDC6721D1EA1012AB6C241EF24681B" authorizationUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/authorize" accessTokenUrl="https://orgfarm-6f9ebc09e1-dev-ed.develop.my.salesforce.com/services/oauth2/token" resourceOwnerId='demo'/>
 			<salesforce:oauth-callback-config listenerConfig="HTTP_Listener_config" callbackPath="/callback" authorizePath="/authorize" externalCallbackUrl="${http.host}/callback" />
 		</salesforce:config-with-oauth-connection>
 	</salesforce:sfdc-config>
