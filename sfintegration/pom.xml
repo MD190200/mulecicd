@@ -4,7 +4,7 @@
 
 	<groupId>c8925180-ca58-46ed-b96e-c03116d1d118</groupId>
 	<artifactId>sfintegration</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 	<name>sfintegration</name>
 
