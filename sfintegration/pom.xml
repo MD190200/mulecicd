@@ -33,9 +33,8 @@
            		   <uri>https://anypoint.mulesoft.com</uri>
                    	   <provider>MC</provider>
                    	   <muleVersion>4.11</muleVersion>
-                   	   <username>mmd190200</username>
-                   	   <password>TimePass19020$#</password>
-                           <applicationName>sfintegration</applicationName>
+                   	   <applicationName>sfintegration</applicationName>
+					 <server>anypoint-platform-creds</server>
                            <environment>Sandbox</environment>
             	           <target>Cloudhub-US-East-2</target>
             	           <replicas>1</replicas>
