@@ -34,9 +34,9 @@
                    	   <provider>MC</provider>
                    	   <muleVersion>4.11</muleVersion>
                    	   <applicationName>sfintegration</applicationName>
-					 <connectedAppClientId>539326e1a5f14ee4a6e98641041c3d8f</connectedAppClientId>
-        <connectedAppClientSecret>5F8C9A0aAAed406bb5eBD39c67CdF496</connectedAppClientSecret>
-        <connectedAppGrantType>client_credentials</connectedAppGrantType>
+					<connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                        <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                        <connectedAppGrantType>client_credentials</connectedAppGrantType>
                            <environment>Sandbox</environment>
             	           <target>Cloudhub-US-East-2</target>
             	           <replicas>1</replicas>
