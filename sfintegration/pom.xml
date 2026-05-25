@@ -34,7 +34,7 @@
                    	   <provider>MC</provider>
                    	   <muleVersion>4.11</muleVersion>
                    	   <username>mmd190200</username>
-                   	   <password>${env.CLOUDHUB}</password>
+                   	   <password>TimePass19020$#</password>
                            <applicationName>sfintegration</applicationName>
                            <environment>Sandbox</environment>
             	           <target>Cloudhub-US-East-2</target>
