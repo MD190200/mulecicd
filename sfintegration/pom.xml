@@ -16,6 +16,13 @@
 	</properties>
 
 	<build>
+		<extensions>
+        <extension>
+            <groupId>org.mule.tools.maven</groupId>
+            <artifactId>exchange-mule-maven-plugin</artifactId>
+            <version>0.0.23</version>
+        </extension>
+    </extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -44,6 +51,21 @@
                         </cloudhub2Deployment>
                        </configuration>
                        </plugin>
+           <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-deploy-plugin</artifactId>
+    <version>3.1.1</version>
+    <executions>
+        <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+			
 	       </plugins>
 	</build>
 	<dependencies>
